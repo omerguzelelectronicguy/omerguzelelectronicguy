@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @omerguzelelectronicguy
-- 👀 I’m interested in digital design, MEMS, embedded systems, AI, machine learning, Compiler optimization, LLVM Compiler, and all the field of science.
-- 🌱 I’m currently learning OpenCL Backend and GPGPU code compilation.
+- 👀 I’m interested in computer architecture, digital design, MEMS, embedded systems, AI, machine learning, compiler optimization, LLVM Compiler, and all the field of science.
+- 🌱 I’m currently designing privilege processing of a RISC-V CPU.
 - 📫 Contact:
                   mail:           omer.guzel@agu.edu.tr             
                   Linked-in:      https://www.linkedin.com/in/omer-guzel-001/
