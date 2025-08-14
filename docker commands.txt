@@ -1,0 +1,90 @@
+docker search ubuntu
+# docker hubda ubuntu arar
+
+docker run -it ubuntu
+# ubuntuyu interactive debug modunda açar.
+
+docker run -it --name name_of_container ubuntu
+# container'a bir isim vererek çalıştırıyoruz. 
+
+docker start name_of_container
+# bununla beraber isimlendirilmiş bir container çalıştrırılır ve arka planda çalışır.
+
+docker stop name_of_container
+# bununla beraber isimlendirilmiş container arka planda çalışmayı durdurur.
+# bu arada id vererek de durdurulabilir.
+
+docker rm  name_of_container
+# container silmek için id de kullanılabilir.
+ 
+docker container ls -aq
+# yer kaplayan bütün container idlerini söyler
+
+docker rm $(docker container ls -aq)
+# yer kaplayan bütün container idlerini siler
+
+docker rmi <image_id>
+# image_idsine sahip imagei siler.
+
+docker images
+# yüklü imageler listelenir
+
+docker image tag ubuntu my-ubuntu
+
+docker run -d name_of_container
+# backgorunda çalıştırmak için kullanılır.
+
+docker attach name_of_container
+# o container'ı ön plana getirir. id ile de kullanılabilir.
+
+docker container logs container_id
+# arkaplanda çalışırken gönderdiği logları gösterir.
+
+docker run -it -v host_path:/mnt/host image_name /bin/bash
+# dockera host klasörü bağlayarak çalıştırır.
+
+
+docker rename CONTAINER_name NEW_NAME
+
+docker container ls -sa 
+# docker containerlerinin boyutlarını gösterir.
+
+docker system df
+# docker sisteminin kapladığı toplam yeri gösterir.
+
+docker commit container_name Image_name
+# containerda yapılan değişiklikleri imaja ekler.
+
+docker save image_name -o image_name.tar
+# imajı tar olarak kaydeder.
+
+docker load -i image_name.tar
+# kaydedilmiş imajı yükler.
+
+docker exec -it my_container_name /bin/bash
+# opening new bash with a container that is already opened in other terminal.
+
+docker cp src_path container:dest_path
+docker cp container:src_path dest_path
+# copying host to docker and docker to host
+
+
+#by giving command with run =>>>` --cpus=1.5  `
+#gives 1.5 to a contaniner
+
+--name container_name
+
+
+--device=/dev/bus/usb/001/031
+# ilgili bus ve portu ilgili container'a bağlayarak çalıştırmayı sağlar.
+
+
+
+
+notify-send "Başlık" "Bu bir sistem mesajıdır."
+
+
+
+zenity --info --text="Bu bir uyarı mesajıdır!"
+
+

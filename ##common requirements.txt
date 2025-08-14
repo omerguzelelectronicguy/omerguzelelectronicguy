@@ -1,0 +1,14 @@
+##common requirements 
+
+nano
+git
+make
+python-is-python3
+device-tree-compiler
+
+autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build
+
+ssh
+sshpass
+verilator
+verible

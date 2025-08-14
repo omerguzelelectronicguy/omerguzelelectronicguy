@@ -1,0 +1,160 @@
+split -n 4 file file_part # this will create 4 file_part that splitted from file.
+cat file_part* > combined_file # this will combine the splitteed files.
+# now file and combined_file is same you can check by md5sum
+md5sum --binary file combined_file
+
+tar -I pigz -cf a.tar dosya/
+#çok çekirdekli dosya tarlama işlemi
+tar -I pigz -xf a.tar 
+#çok çekirdekli dosya tardan çıkarma işlemi
+
+
+awk -v str1=" Startpoint: " -v str2="  Point " '$0 ~ str1, $0 ~ str2' "./yonca_core_timing.rpt" 
+# it print the parts starting with str1 and ending with str2 
+
+ git branch -d
+ git branch -D `git branch --merged | grep -v \* | xargs`
+# it deletes all the merged brnaches.
+
+# Tüm yerel branchleri siler.
+git branch -D `git branch | grep -v \* | xargs`
+
+# Merge edilmiş tüm yerel branchleri siler.
+git branch -D `git branch --merged | grep -v \* | xargs`
+
+git reset --soft HEAD~
+#undo last commit.
+
+git fetch --prune
+# it deletes all the deleted remote branches.
+git reset --merge
+#merge conflict ile alakalı sorunları çözüyor olabilir o tarz bir şey. Stash conflict çıkınca kullan
+#stash pop ederken conflict çıkarsa bununla iptal edebiliyorsun.
+
+git reset --soft HEAD~
+#undo last commit.
+
+git push -f origin branchnmame
+# bununla geri aldıklarımızı pushlarsak commiti silmiş oluyoruz remotetan
+
+# how to rename a stash or recover the dropped(unintentionally) stash
+  $ git stash drop stash@{1}
+  Dropped stash@{1} (af8fdeee49a03d1b4609f294635e7f0d622e03db)
+  Now just add it again with new message using sha of commit returned after dropping:
+git stash store -m "Very descriptive message" af8fdeee49a03d1b4609f294635e7f0d622e03db
+
+watch -n 1 "lmstat -A | grep msimhdlsim" 
+# bu canlı bir şekilde kaç questa lisansı kullanılıyor yazıyor.
+
+lmstat -A
+# bu da tüm lisansları gösteriyor eğer kim kullanıyor bakmak istersen bunu kullan
+
+sudo perf stats <komut>
+#çok güzel performans ölçüyor.
+
+gprof ./binary
+#gccye -g -pg flagini ver. Bu fonksiyonlarda geçen süreleri gösteriyor.
+
+#The -A1 tells grep to include 1 line after the match. -B includes lines before the match, in case you need that too. -C includes both before and after.
+# -v behaves like not. grep -v "phrase"; # return the lines that not including phrase.
+
+#### GDB kullanımı
+s       	step 	Step to the next source line, stepping into functions.	Steps into	Source
+n       	next 	Step to the next source line, but does not enter function calls.	Skips over	Source
+si      	stepi	Step one machine instruction, stepping into functions.	Steps into	Instruction
+ni      	nexti	Step one machine instruction, but does not enter functions.	Skips over	Instruction
+finish  	—    	Run until the current function returns.	Runs until return	Source
+continue	c    	Continue running until next breakpoint or program ends.	Continues	Source
+info break
+# Breakpointleri gösterir.
+
+b sayı
+# dosyanın ilgili satırına breakpoint koyar.
+
+d sayı 
+# sayıncı breakpointi siler.
+
+r arg1 arg2 arg3 < stdio_file.txt
+# gdb ile hata ayıklamak üzere programı başlatınca argüman vermek için bu şekilde çalıştırılabilir.
+# ayrıca istenirse < işaretei ile girdi olarak verilecek şeyler text dosyasından verilebilir.
+
+p variable
+# değeri print eder. x: examine (inceleme), b: byte, w: word, g: 64bit,
+
+# adresteki değerleri yazdırmak için 16 word yazdırır. word hex formatta
+x/16wx 0xa0000000
+
+#byte byte yazdırmak için
+x/16bx 0xa0000000
+
+set variable=değer
+#değere atama yapar.
+
+set history remove-duplicates <count>
+# count kadar olan tekrarlamaları siler.
+
+b main
+# Puts a breakpoint at the beginning of the program
+
+u 
+#Goes up a level in the stack
+
+set debug remote 1
+#debug modda daha fazla bilgi verir. (Do this (before target remote):)
+
+stty -ixon
+# bunu terminale yazdığında CTRL + R ile yaptığın geriye dönük aramada CTRL + S ile ileriye çevirebilirsin yönünü.
+
+
+xcelium simülasyon başlatma
+xrun counter.v counter_tb.v -access rwc -gui
+
+
+#sshpass yerine scp ile kopyalama yapmak için ve aynı zamanda serverlara bağlanırken şifre sormaması için
+
+#known host idlerinde yanlışlık varsa düzelt ya da sil tamamını
+#sonra gitlaba eklediğimiz ssh keyini ~/.ssh/authorized_keys içine ekle
+
+echo key >> ~/.ssh/authorized_keys
+sonra ilk bağlanırken known idye eklensin mi diye soracak ona yes demeliyiz ya da known idye eklemeliyiz bağlantı öncesinde.
+
+
+
+dconf dump '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' > custom-keybindings.dconf
+
+dconf load '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' < custom-keybindings.dconf
+
+
+
+xclip -selection primary
+
+
+
+
+tutel.tutel123
+
+
+
+
+
+
+
+
+
+
+#Podman gui açmak için örnek 
+#Hostta
+
+xhost local:
+
+#2. Run the Container with X11 Support
+
+podman run --rm -it \
+    --net=host \
+    --device /dev/dri \
+    --env DISPLAY=$DISPLAY \
+    --env XAUTHORITY=$XAUTHORITY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $XAUTHORITY:$XAUTHORITY \
+    ubuntu:latest
+

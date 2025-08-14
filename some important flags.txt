@@ -1,0 +1,43 @@
+--no-addresses
+           When disassembling, don't print addresses on each line or for
+           symbols and relocation offsets.  In combination with
+           --no-show-raw-insn this may be useful for comparing compiler
+           output.
+
+
+           
+--no-show-raw-insn
+           When disassembling instructions, do not print the instruction
+           bytes.  This is the default when --prefix-addresses is used.
+
+ --insn-width=width
+           Display width bytes on a single line when disassembling
+           instructions.
+
+       --visualize-jumps[=color|=extended-color|=off]
+           Visualize jumps that stay inside a function by drawing ASCII
+           art between the start and target addresses.  The optional
+           =color argument adds color to the output using simple
+           terminal colors.  Alternatively the =extended-color argument
+           will add color using 8bit colors, but these might not work on
+           all terminals.
+
+           If it is necessary to disable the visualize-jumps option
+           after it has previously been enabled then use
+           visualize-jumps=off.
+
+
+
+--source-comment[=txt]
+           Like the -S option, but all source code lines are displayed
+           with a prefix of txt.  Typically txt will be a comment string
+           which can be used to distinguish the assembler code from the
+           source code.  If txt is not provided then a default string of
+           "# " (hash followed by a space), will be used.
+
+
+
+--save-temps
+    This create temporary files after preprocessed compiled linked and assembled.
+
+    

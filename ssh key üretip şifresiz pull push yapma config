@@ -1,0 +1,11 @@
+~/.ssh/ dizininded ssh-keygen -t rsa -b 2048 -C "yorum"
+
+cat id_rsa.pub 
+
+ssh -Tvvv git@github.com
+
+nano ./.ssh/config
+
+ssh -Tvvv git@github.com
+
+ssh -T git@github.com
