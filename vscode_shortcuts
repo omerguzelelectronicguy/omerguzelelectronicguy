@@ -1,16 +1,45 @@
-		Vscode Shortcuts
-
-alt		+ 	A					cursor algin (eklenti ile beraber)
-ctrl	+ 	B					toggle sideview
-f11								toggle full screen
-ctrl 	+ 	J					Toggle panel visibilty
-ctrl	+ 	Alt		+ 	B 		Toggle second sideview
+#		Vscode Shortcuts
+F11								toggle full screen
+Alt		+ 	A					cursor algin (eklenti ile beraber)
+Alt		+ 	V					duplicate selection
+Alt		+ 	C					match the letter case
+Alt		+ 	W					match the whole word
+Alt		+ 	R					match with regular expression
+Ctrl	+ 	B					toggle sideview
+Ctrl 	+ 	J					Toggle panel visibilty
+Ctrl 	+ 	O					Open a File with system browser
+Ctrl 	+ 	P					Search files
 Ctrl	+	Up					scroll to the previous command while in terminal.
-ctrl	+	K
+Ctrl	+	1					Focus first editor group
+Ctrl	+	F2					Change all occurances
+Ctrl	+	N					New editor
+Ctrl	+	i					Focus to Terminal
+Ctrl	+ 	Alt		+ 	B 		Toggle second sideview
+Ctrl	+	Shift	+	N		New Window
+Ctrl	+	Shift	+	K		Delete Line
+
+Ctrl	+	K
 		O 						Open same with new window
+		W						Close all editors in Group
+
 Alt								speed up when scrolling terminal.
 		
 
 
-		General Shortcuts
-super	+	Shift	+	Arrow	Move window to directed monitor
+## Keybindings.json (Overwritten ones to the Defalut json )
+
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "alt+[Slash]",
+        "command": "workbench.action.navigateBackInEditLocations"
+    },
+    {
+        "key": "alt+v",
+        "command": "editor.action.duplicateSelection"
+    },
+    {
+        "key": "ctrl+[Backslash]",
+        "command": "terminal.focus"
+    }
+]
