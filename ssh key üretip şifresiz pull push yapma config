@@ -1,3 +1,12 @@
+Şu adımlarla da direk çalıştı:
+ssh-keygen
+cat /home/omerg/.ssh/id_ed25519.pub # kopyalayıp ssh-key'e ekle.
+git config --global user.email "omer.guzel@agu.edu.tr"
+git config --global user.name "omerguzelelectronicguy"
+
+
+
+# önceki metod aşağıda:
 ~/.ssh/ dizininded ssh-keygen -t rsa -b 2048 -C "yorum"
 
 cat id_rsa.pub 
