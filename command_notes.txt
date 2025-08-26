@@ -12,6 +12,10 @@ tar -I pigz -xf a.tar
 awk -v str1=" Startpoint: " -v str2="  Point " '$0 ~ str1, $0 ~ str2' "./yonca_core_timing.rpt" 
 # it print the parts starting with str1 and ending with str2 
 
+shuf -i 0-8 | tr '\n' ' '
+# it generate the random permutation of numbers from 0 to 8.
+# tr for single line with spaces. one number each line without tr
+
  git branch -d
  git branch -D `git branch --merged | grep -v \* | xargs`
 # it deletes all the merged brnaches.
