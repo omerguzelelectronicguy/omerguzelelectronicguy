@@ -128,7 +128,10 @@ dconf dump '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' >
 
 dconf load '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' < custom-keybindings.dconf
 
-
+cut -c-5  text.txt # her satırın son beş karakterini yazdırır.
+cut -c1-5 text.txt # her satırın ilk beş karakterini yazdırır.
+cut -c3-5 text.txt # her satırın 3ten beşe olan karakterlerini yazdırır.
+cat text.txt | cut -c1-5 # aynı işlemi pipe ile yapıyor.
 
 xclip -selection primary
 
