@@ -11,6 +11,11 @@ tar -I pigz -xf a.tar
 
 awk -v str1=" Startpoint: " -v str2="  Point " '$0 ~ str1, $0 ~ str2' "./yonca_core_timing.rpt" 
 # it print the parts starting with str1 and ending with str2 
+ 
+od -v -tx1 -w4 -An u-boot.itb | awk '{print $4, $3, $2, $1}'
+# binary'i hex'e çevirmek için.
+# -An adresleri basmıyor. -v tekrar eden satırların hepsini yazdırmak için.
+# -tx4 hexadecimal 4 byte 4byte yazdırır. -w4 tek satırda 4 byte olacak şekilde sınırlar.
 
 shuf -i 0-8 | tr '\n' ' '
 # it generate the random permutation of numbers from 0 to 8.
@@ -133,6 +138,10 @@ cut -c1-5 text.txt # her satırın ilk beş karakterini yazdırır.
 cut -c3-5 text.txt # her satırın 3ten beşe olan karakterlerini yazdırır.
 cat text.txt | cut -c1-5 # aynı işlemi pipe ile yapıyor.
 
+$ false 2>&1 | tee test.log # burada pipe olduğu için false komutunun return kodunu alamadım.
+$ echo ${PIPESTATUS[0]} # buradaki değişken pipe'ta bulunan her elemanınkini ayrı tutuyor. Dönütü bir olacaktır.
+
+
 xclip -selection primary
 
 
@@ -164,4 +173,6 @@ podman run --rm -it \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $XAUTHORITY:$XAUTHORITY \
     ubuntu:latest
+
+# gitlabda #123 yerine #123+ yazılırsa issue basşlığı da gösterilir.
 
