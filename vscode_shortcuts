@@ -41,5 +41,10 @@ Alt								speed up when scrolling terminal.
     {
         "key": "ctrl+[Backslash]",
         "command": "terminal.focus"
+    },
+    {
+        "key": "ctrl+shift+[Backslash]",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
     }
 ]
