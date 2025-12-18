@@ -21,6 +21,37 @@ shuf -i 0-8 | tr '\n' ' '
 # it generate the random permutation of numbers from 0 to 8.
 # tr for single line with spaces. one number each line without tr
 
+dd if=/dev/urandom  bs=1 count=1 > random.bin
+# it generate random numbers hexadecimal the size of the output is bs*count bytes
+# bs=<how many byte chunk> count=<how many count>
+# increasing bs makes process faster.
+# use /dev/zero for filling with zero. /dev/random for high quality randomness(slower).
+
+yes 00000000 | head -n 256000000 > output.hex
+# yes repeats "00000000". head is used to stop after 256 million lines. This creates 1GB hex very fast.
+echo -e '\a'
+# give sound from terminal
+
+#stdout(1) stderr(2) pipeing
+command > command.log 2>&1  # stderr to stdout
+command &> command.log      # stderr to stdout
+command > command.log 1>&2  # stdout to stderr
+command &> command.log      # stdout to stderr
+exec 1> stdout.txt          # directed the stdout to stdout.txt file. Active after this command.
+exec 2> stderr.txt          # directed the stderr to stderr.txt file. Active after this command.
+exec 0< stdin.txt           # directed the stdin.txt to stdin. Active after this command. session is closed in EOF(\004)
+exec 1>&-                   # closes stdout
+exec 1>/dev/tty             # redirect it again terminal correctly.
+exec 2>/dev/tty             # redirect it again terminal correctly.
+exec 0</dev/tty             # redirect it again terminal correctly.
+# Ctrl + D sends EOF that's why terminal closed.
+
+echo "This goes to the terminal even though exec 1> output.txt command is active." > /dev/tty
+read var < /dev/tty # This prompts the user for input on the terminal, even if exec 0< stdin.txt is active.
+
+cat text.txt | grep pattern # grep takes stdin from stdout of cat and takes "pattern" as argument
+grep pattern 0< text.txt    # same with the above
+
  git branch -d
  git branch -D `git branch --merged | grep -v \* | xargs`
 # it deletes all the merged brnaches.
