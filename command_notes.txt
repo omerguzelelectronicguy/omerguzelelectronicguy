@@ -45,6 +45,8 @@ exec 1>/dev/tty             # redirect it again terminal correctly.
 exec 2>/dev/tty             # redirect it again terminal correctly.
 exec 0</dev/tty             # redirect it again terminal correctly.
 # Ctrl + D sends EOF that's why terminal closed.
+tty # tells where terminal file is connected.
+# you can connect an output to that file to see the output in that terminal
 
 echo "This goes to the terminal even though exec 1> output.txt command is active." > /dev/tty
 read var < /dev/tty # This prompts the user for input on the terminal, even if exec 0< stdin.txt is active.
