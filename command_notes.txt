@@ -79,6 +79,9 @@ git reset --soft HEAD~
 git push -f origin branchnmame
 # bununla geri aldıklarımızı pushlarsak commiti silmiş oluyoruz remotetan
 
+git stash show -p stash@{1}
+# print the changes in terminal (colored)
+
 # how to rename a stash or recover the dropped(unintentionally) stash
   $ git stash drop stash@{1}
   Dropped stash@{1} (af8fdeee49a03d1b4609f294635e7f0d622e03db)
@@ -94,8 +97,11 @@ lmstat -A
 sudo perf stats <komut>
 #çok güzel performans ölçüyor.
 
-gprof ./binary
 #gccye -g -pg flagini ver. Bu fonksiyonlarda geçen süreleri gösteriyor.
+# önce derlenmiş binary'i çalıştır. sonra gmon.out diye bir şey çıkacak
+gprof ./binary gmon.out | gprof2dot -w -s | dot -Tpng -o output.png
+#buradaki png graf şeklinde hangi fonksiyon ne kadar zaman harcamış onu gösterir.
+
 
 #The -A1 tells grep to include 1 line after the match. -B includes lines before the match, in case you need that too. -C includes both before and after.
 # -v behaves like not. grep -v "phrase"; # return the lines that not including phrase.
