@@ -150,6 +150,10 @@ u
 set debug remote 1
 #debug modda daha fazla bilgi verir. (Do this (before target remote):)
 
+dashboard -layout source assembly registers stack
+dashboard assembly -enabled off
+# bunlar gdb dashboard eklentisinin ayarlarını oynamak için kullanışlı komutlar.
+
 stty -ixon
 # bunu terminale yazdığında CTRL + R ile yaptığın geriye dönük aramada CTRL + S ile ileriye çevirebilirsin yönünü.
 
