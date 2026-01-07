@@ -118,6 +118,7 @@ info break
 
 b sayı
 # dosyanın ilgili satırına breakpoint koyar.
+ break iter.c:6 if i == 5
 
 d sayı 
 # sayıncı breakpointi siler.
@@ -128,6 +129,13 @@ r arg1 arg2 arg3 < stdio_file.txt
 
 p variable
 # değeri print eder. x: examine (inceleme), b: byte, w: word, g: 64bit,
+display /x spike_info
+# bu her adımda spike_info nun ekrana basılmasını sağlar bir nevi anlık kontrol için ekleniyor. 
+# undisplay <num> komutu ile silinebilir.
+
+#### valgrind kullanımı.
+--tool=memcheck       # undefined memoryleri göstermesi için
+--track-origins=yes   # initial data verilmemiş olanları göstermesi için
 
 # adresteki değerleri yazdırmak için 16 word yazdırır. word hex formatta
 x/16wx 0xa0000000
