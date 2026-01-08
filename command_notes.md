@@ -1,13 +1,22 @@
+# File Operation
+### spliting concatting
+```
 split -n 4 file file_part # this will create 4 file_part that splitted from file.
 cat file_part* > combined_file # this will combine the splitteed files.
 # now file and combined_file is same you can check by md5sum
 md5sum --binary file combined_file
-
+```
+### compressing decompressing
+```
 tar -I pigz -cf a.tar dosya/
 #çok çekirdekli dosya tarlama işlemi
 tar -I pigz -xf a.tar 
 #çok çekirdekli dosya tardan çıkarma işlemi
-
+```
+# Text binary and data operation and manipulation
+```
+#The -A1 tells grep to include 1 line after the match. -B includes lines before the match, in case you need that too. -C includes both before and after.
+# -v behaves like not. grep -v "phrase"; # return the lines that not including phrase.
 
 awk -v str1=" Startpoint: " -v str2="  Point " '$0 ~ str1, $0 ~ str2' "./yonca_core_timing.rpt" 
 # it print the parts starting with str1 and ending with str2 
@@ -16,6 +25,12 @@ od -v -tx1 -w4 -An u-boot.itb | awk '{print $4, $3, $2, $1}'
 # binary'i hex'e çevirmek için.
 # -An adresleri basmıyor. -v tekrar eden satırların hepsini yazdırmak için.
 # -tx4 hexadecimal 4 byte 4byte yazdırır. -w4 tek satırda 4 byte olacak şekilde sınırlar.
+```
+```
+cut -c-5  text.txt # her satırın son beş karakterini yazdırır.
+cut -c1-5 text.txt # her satırın ilk beş karakterini yazdırır.
+cut -c3-5 text.txt # her satırın 3ten beşe olan karakterlerini yazdırır.
+cat text.txt | cut -c1-5 # aynı işlemi pipe ile yapıyor.
 
 shuf -i 0-8 | tr '\n' ' '
 # it generate the random permutation of numbers from 0 to 8.
@@ -29,8 +44,13 @@ dd if=/dev/urandom  bs=1 count=1 > random.bin
 
 yes 00000000 | head -n 256000000 > output.hex
 # yes repeats "00000000". head is used to stop after 256 million lines. This creates 1GB hex very fast.
-echo -e '\a'
-# give sound from terminal
+```
+# interaction
+`echo -e '\a' # give sound from terminal`
+# Terminal operation
+```
+# ctrl + r search reverse in bash
+stty -ixon # this enables also forward searching by CTRL + S
 
 #stdout(1) stderr(2) pipeing
 command > command.log 2>&1  # stderr to stdout
@@ -54,6 +74,13 @@ read var < /dev/tty # This prompts the user for input on the terminal, even if e
 cat text.txt | grep pattern # grep takes stdin from stdout of cat and takes "pattern" as argument
 grep pattern 0< text.txt    # same with the above
 
+
+$ false 2>&1 | tee test.log # burada pipe olduğu için false komutunun return kodunu alamadım.
+$ echo ${PIPESTATUS[0]} # buradaki değişken pipe'ta bulunan her elemanınkini ayrı tutuyor. Dönütü bir olacaktır.
+
+```
+# git commands
+```
  git branch -d
  git branch -D `git branch --merged | grep -v \* | xargs`
 # it deletes all the merged brnaches.
@@ -88,25 +115,25 @@ git stash show -p stash@{1}
   Now just add it again with new message using sha of commit returned after dropping:
 git stash store -m "Very descriptive message" af8fdeee49a03d1b4609f294635e7f0d622e03db
 
-watch -n 1 "lmstat -A | grep msimhdlsim" 
-# bu canlı bir şekilde kaç questa lisansı kullanılıyor yazıyor.
+# gitlabda #123 yerine #123+ yazılırsa issue basşlığı da gösterilir.
 
-lmstat -A
-# bu da tüm lisansları gösteriyor eğer kim kullanıyor bakmak istersen bunu kullan
+```
 
-sudo perf stats <komut>
-#çok güzel performans ölçüyor.
+`watch -n 1 "lmstat -A | grep msimhdlsim" # bu canlı bir şekilde kaç questa lisansı kullanılıyor yazıyor.`
 
+`lmstat -A # bu da tüm lisansları gösteriyor eğer kim kullanıyor bakmak istersen bunu kullan`
+
+`sudo perf stats <komut> #çok güzel performans ölçüyor.`
+
+```
 #gccye -g -pg flagini ver. Bu fonksiyonlarda geçen süreleri gösteriyor.
 # önce derlenmiş binary'i çalıştır. sonra gmon.out diye bir şey çıkacak
 gprof ./binary gmon.out | gprof2dot -w -s | dot -Tpng -o output.png
 #buradaki png graf şeklinde hangi fonksiyon ne kadar zaman harcamış onu gösterir.
+```
 
-
-#The -A1 tells grep to include 1 line after the match. -B includes lines before the match, in case you need that too. -C includes both before and after.
-# -v behaves like not. grep -v "phrase"; # return the lines that not including phrase.
-
-#### GDB kullanımı
+# GDB Commands
+```
 s       	step 	Step to the next source line, stepping into functions.	Steps into	Source
 n       	next 	Step to the next source line, but does not enter function calls.	Skips over	Source
 si      	stepi	Step one machine instruction, stepping into functions.	Steps into	Instruction
@@ -132,11 +159,6 @@ p variable
 display /x spike_info
 # bu her adımda spike_info nun ekrana basılmasını sağlar bir nevi anlık kontrol için ekleniyor. 
 # undisplay <num> komutu ile silinebilir.
-
-#### valgrind kullanımı.
---tool=memcheck       # undefined memoryleri göstermesi için
---track-origins=yes   # initial data verilmemiş olanları göstermesi için
-
 # adresteki değerleri yazdırmak için 16 word yazdırır. word hex formatta
 x/16wx 0xa0000000
 
@@ -161,9 +183,13 @@ set debug remote 1
 dashboard -layout source assembly registers stack
 dashboard assembly -enabled off
 # bunlar gdb dashboard eklentisinin ayarlarını oynamak için kullanışlı komutlar.
+```
+# Valgrind usage
+```
+--tool=memcheck       # undefined memoryleri göstermesi için
+--track-origins=yes   # initial data verilmemiş olanları göstermesi için
+```
 
-stty -ixon
-# bunu terminale yazdığında CTRL + R ile yaptığın geriye dönük aramada CTRL + S ile ileriye çevirebilirsin yönünü.
 
 
 xcelium simülasyon başlatma
@@ -184,31 +210,10 @@ dconf dump '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' >
 
 dconf load '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' < custom-keybindings.dconf
 
-cut -c-5  text.txt # her satırın son beş karakterini yazdırır.
-cut -c1-5 text.txt # her satırın ilk beş karakterini yazdırır.
-cut -c3-5 text.txt # her satırın 3ten beşe olan karakterlerini yazdırır.
-cat text.txt | cut -c1-5 # aynı işlemi pipe ile yapıyor.
-
-$ false 2>&1 | tee test.log # burada pipe olduğu için false komutunun return kodunu alamadım.
-$ echo ${PIPESTATUS[0]} # buradaki değişken pipe'ta bulunan her elemanınkini ayrı tutuyor. Dönütü bir olacaktır.
-
-
 xclip -selection primary
 
-
-
-
-tutel.tutel123
-
-
-
-
-
-
-
-
-
-
+# PODMAN
+```
 #Podman gui açmak için örnek 
 #Hostta
 
@@ -224,6 +229,4 @@ podman run --rm -it \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $XAUTHORITY:$XAUTHORITY \
     ubuntu:latest
-
-# gitlabda #123 yerine #123+ yazılırsa issue basşlığı da gösterilir.
-
+```
