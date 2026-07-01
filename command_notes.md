@@ -106,8 +106,24 @@ git reset --soft HEAD~
 git push -f origin branchnmame
 # bununla geri aldıklarımızı pushlarsak commiti silmiş oluyoruz remotetan
 
+git diff --name-status target-branch-name
+# To see a list of changed files between your current state and another branch
+git diff target-branch-name
+# To see the actual code differences directly in the terminal
+git diff target-branch-name -- file
+# just for one file.
+
+
 git stash show -p stash@{1}
 # print the changes in terminal (colored)
+
+git submodule foreach --recursive 'cd "$toplevel/$path" && git stash list'
+# run git stash list in each submodule recursively. To see all the stash in submodules. main module is not included.
+
+git stash show -p stash@{N} > stash-N.patch
+# save stash to a file
+git apply stash-N.patch
+# apply the saved stash from patch.
 
 # how to rename a stash or recover the dropped(unintentionally) stash
   $ git stash drop stash@{1}
@@ -177,12 +193,34 @@ b main
 u 
 #Goes up a level in the stack
 
+info threads
+# tell the informations for all the targets seperately
+
 set debug remote 1
 #debug modda daha fazla bilgi verir. (Do this (before target remote):)
 
 dashboard -layout source assembly registers stack
 dashboard assembly -enabled off
 # bunlar gdb dashboard eklentisinin ayarlarını oynamak için kullanışlı komutlar.
+```
+# OpenOCD Commands
+```
+load_image dosya.elf
+
+targets
+# show all the harts and infos about it
+targets another_hart
+# change target to another hart
+
+reset, halt, resume
+# they are what they are
+
+bp addr 4
+# it puts a 4byte breakpoint instruction to there.
+rbp all
+# remove all breakpoints
+
+
 ```
 # Valgrind usage
 ```
