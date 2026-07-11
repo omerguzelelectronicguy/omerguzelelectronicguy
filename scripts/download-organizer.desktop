@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Download Organizer
+Comment=Dosya uzantılarına göre indirmeleri düzenler
+Exec=/bin/bash /home/omerg/.local/bin/download_organizer.sh
+X-KDE-Autostart-after=panel
+Terminal=false
+Icon=system-run
